@@ -18,40 +18,40 @@ function howManyMovies(moviesArray) {
   return SpielbergDramaMovies.length;
 }
 
-// const movies1 = [
-//   {
-//     title: "The Shawshank Redemption",
-//     year: 1994,
-//     director: "Frank Darabont",
-//     duration: "2h 22min",
-//     genre: ["Crime", "Drama"],
-//     score: ""
-//   },
-//   {
-//     title: "The Godfather",
-//     year: 1972,
-//     director: "Francis Ford Coppola",
-//     duration: "2h 55min",
-//     genre: ["Crime", "Drama"],
-//     score: 9.2,
-//   },
-//   {
-//     title: "The Godfather: Part II",
-//     year: 1974,
-//     director: "Francis Ford Coppola",
-//     duration: "3h 22min",
-//     genre: ["Crime", "Drama"],
-//     score: 9,
-//   },
-//   {
-//     title: "The Dark Knight",
-//     year: 2008,
-//     director: "Christopher Nolan",
-//     duration: "2h 32min",
-//     genre: ["Action", "Crime", "Drama", "Thriller"],
-//     score: 9,
-//   },
-// ];
+const movies1 = [
+  {
+    title: "The Shawshank Redemption",
+    year: 1994,
+    director: "Frank Darabont",
+    duration: "2h 22min",
+    genre: ["Crime", "Drama"],
+    score: ""
+  },
+  {
+    title: "The Godfather",
+    year: 1972,
+    director: "Francis Ford Coppola",
+    duration: "2h 55min",
+    genre: ["Crime", "Drama"],
+    score: 9.2,
+  },
+  {
+    title: "The Godfather: Part II",
+    year: 1974,
+    director: "Francis Ford Coppola",
+    duration: "3h 22min",
+    genre: ["Crime", "Drama"],
+    score: 9,
+  },
+  {
+    title: "The Dark Knight",
+    year: 2008,
+    director: "Christopher Nolan",
+    duration: "2h 32min",
+    genre: ["Action", "Crime", "Drama", "Thriller"],
+    score: 9,
+  },
+];
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
@@ -89,7 +89,15 @@ function dramaMoviesScore(moviesArray) {
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  const moviesYear = moviesArray.toSorted((a, b)=> a.year - b.year);
+
+return moviesYear;
+    
+}
+
+console.log(orderByYear(movies1));
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
