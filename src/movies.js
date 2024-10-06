@@ -127,7 +127,60 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+
+  //Create copy of the original array and use that from now on
+  const moviesArrayMins = moviesArray.map((movie) => movie);
+
+  moviesArrayMins.forEach((movie) => {
+    //Remove white space to just have numbers and "h" or "min"
+    const durationString = movie.duration.split(" ").join("");
+
+    //Check whether the string contains "h" or "min" or both
+    const hasHours = durationString.includes("h");
+    const hasMins = durationString.includes("min");
+    const hasHoursAndMins = hasHours && hasMins;
+
+    //Index of "h" or "min" to use later
+    const hPosition = durationString.indexOf("h");
+    const minPosition = durationString.indexOf("min");
+
+    //Declare variables to store hours and mins
+    let hours = "";
+    let mins = "";
+
+    if (hasHoursAndMins) {
+      hours = durationString.slice(0, hPosition);
+      mins = durationString.slice(hPosition + 1, minPosition);
+    } else if (hasHours) {
+      hours = durationString.slice(0, hPosition);
+    } else if (hasMins) {
+      mins = durationString.slice(0, minPosition);
+    } else {
+      ("Duration not following expected format (e.g. 1h 20min)");
+    }
+
+    //Calculate duration and add to the movie
+    const durationInMins = Number(hours) * 60 + Number(mins);
+    movie.duration = durationInMins;
+  });
+
+  // The tests that are failing and I cannot understand why!!
+  
+  /* console.log(
+    "moviesArray === moviesArrayMins ",
+    moviesArray === moviesArrayMins
+  ); // false
+
+  console.log(
+    "typeof(moviesArrayMins[0].duration)",
+    typeof moviesArrayMins[0].duration
+  ); // number */
+  
+  return moviesArrayMins;
+}
+
+//turnHoursToMinutes(movies1);
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
