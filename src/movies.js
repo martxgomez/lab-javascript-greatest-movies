@@ -107,17 +107,21 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
+  //Creamos un array solo de los títulos
   const moviesTitle = moviesArray.map((movies) => {
     return movies.title;
   });
 
+  //Creamos un array con los títulos ordenados alfabeticamente
   const moviesAlpha = moviesTitle.sort((a, b) => {
     return a.localeCompare(b, "es", { sensitivity: "base" });
   });
 
+  //Creamos 2 opciones para listados de mas o menos de 20 peliculas
   if (moviesAlpha.length <= 20) {
     return moviesAlpha;
   } else {
+    //para listados de más de 20 hacemos un slice para que sólo coja las 20 primeras
     return moviesAlpha.slice(0, 20);
   }
 }
