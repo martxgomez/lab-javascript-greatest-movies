@@ -1,37 +1,37 @@
-// const movies1 = [
-//   {
-//     title: "The Shawshank Redemption",
-//     year: 1994,
-//     director: "Frank Darabont",
-//     duration: "2h 22min",
-//     genre: ["Crime", "Drama"],
-//     score: "",
-//   },
-//   {
-//     title: "The Godfather",
-//     year: 1972,
-//     director: "Francis Ford Coppola",
-//     duration: "2h 55min",
-//     genre: ["Crime", "Drama"],
-//     score: 9.2,
-//   },
-//   {
-//     title: "The Godfather: Part II",
-//     year: 1974,
-//     director: "Francis Ford Coppola",
-//     duration: "3h 22min",
-//     genre: ["Crime", "Drama"],
-//     score: 9,
-//   },
-//   {
-//     title: "The Dark Knight",
-//     year: 2008,
-//     director: "Christopher Nolan",
-//     duration: "2h 32min",
-//     genre: ["Action", "Crime", "Drama", "Thriller"],
-//     score: 9,
-//   },
-// ];
+const movies1 = [
+  {
+    title: "The Shawshank Redemption",
+    year: 1994,
+    director: "Frank Darabont",
+    duration: "2h 22min",
+    genre: ["Crime", "Drama"],
+    score: "",
+  },
+  {
+    title: "The Godfather",
+    year: 1972,
+    director: "Francis Ford Coppola",
+    duration: "2h 55min",
+    genre: ["Crime", "Drama"],
+    score: 9.2,
+  },
+  {
+    title: "The Godfather: Part II",
+    year: 1974,
+    director: "Francis Ford Coppola",
+    duration: "3h 22min",
+    genre: ["Crime", "Drama"],
+    score: 9,
+  },
+  {
+    title: "The Dark Knight",
+    year: 2008,
+    director: "Christopher Nolan",
+    duration: "2h 32min",
+    genre: ["Action", "Crime", "Drama", "Thriller"],
+    score: 9,
+  },
+];
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -106,7 +106,21 @@ function orderByYear(moviesArray) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const moviesTitle = moviesArray.map((movies) => {
+    return movies.title;
+  });
+
+  const moviesAlpha = moviesTitle.sort((a, b) => {
+    return a.localeCompare(b, "es", { sensitivity: "base" });
+  });
+
+  if (moviesAlpha.length <= 20) {
+    return moviesAlpha;
+  } else {
+    return moviesAlpha.slice(0, 20);
+  }
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
