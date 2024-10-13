@@ -100,7 +100,12 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  const moviesYear = moviesArray.toSorted((a, b) => a.year - b.year);
+  const moviesYear = moviesArray.toSorted((a, b) => {
+    if (a.year !== b.year) {
+      return a.year - b.year;
+    }
+    return a.title.localeCompare(b.title);
+  });
 
   return moviesYear;
 }
@@ -128,9 +133,8 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-
   //Create copy of the original array and use that from now on
-  const moviesArrayMins = moviesArray.map((movie) => movie);
+  const moviesArrayMins = structuredClone(moviesArray);
 
   moviesArrayMins.forEach((movie) => {
     //Remove white space to just have numbers and "h" or "min"
@@ -166,7 +170,7 @@ function turnHoursToMinutes(moviesArray) {
   });
 
   // The tests that are failing and I cannot understand why!!
-  
+
   /* console.log(
     "moviesArray === moviesArrayMins ",
     moviesArray === moviesArrayMins
@@ -176,11 +180,64 @@ function turnHoursToMinutes(moviesArray) {
     "typeof(moviesArrayMins[0].duration)",
     typeof moviesArrayMins[0].duration
   ); // number */
-  
+
   return moviesArrayMins;
 }
 
 //turnHoursToMinutes(movies1);
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(movies) {
+  if (movies.length === 0) {
+    return null;
+  }
+
+  //Creamos un objeto que vincule las puntuaciones con los años
+  const yearsScores = {};
+
+  //Creamos las propiedades del objeto anterior
+
+  for (let movie of movies) {
+    const year = movie.year;
+    let score = movie.score;
+
+    //Si la puntuación no existe será 0
+    if (!movie.score) {
+      score = 0;
+    }
+    //Creamos el array de puntuaciones dentro de cada año
+    if (!yearsScores[year]) {
+      yearsScores[year] = [];
+    }
+    yearsScores[year].push(score);
+  }
+
+  console.log(yearsScores);
+
+  //Declaramos las variables de mejor año y mejor puntuación
+  let bestYear;
+  let bestScore = 0;
+
+  //Creamos la suma de las puntuaciones y la media
+  for (let year in yearsScores) {
+    const score = yearsScores[year];
+    const sumScores = score.reduce((acc, cur) => {
+      return acc + cur;
+    }, 0);
+    const averageScores = sumScores / score.length;
+
+    console.log(averageScores);
+//Comparamos las puntuaciones
+    if (averageScores > bestScore) {
+      bestScore = averageScores;
+      bestYear = year;
+    } else if (averageScores === bestScore) //Si las puntuaciones son iguales, gana el más antiguo
+      if (bestYear > year) {
+        bestYear = year;
+      }
+  }
+
+  return `The best year was ${bestYear} with an average score of ${bestScore}`
+}
+
+bestYearAvg(movies1);
